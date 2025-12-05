@@ -16,19 +16,19 @@ help:
 
 .PHONY: run
 run:
-	go run .
+	go run . -mod=vendor
 
 .PHONY: build
 build:
-	go build -o bin/toll-calculator .
+	go build -mod=vendor -o bin/toll-calculator .
 
 .PHONY: test
 test:
-	go test -v -race -cover ./...
+	go test -mod=vendor -v -race -cover ./...
 
 .PHONY: bench
 bench:
-	go test -bench=. -benchmem -benchtime=3s ./...
+	go test -mod=vendor -bench=. -benchmem -benchtime=3s ./...
 
 .PHONY: mocks
 mocks:
