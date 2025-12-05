@@ -40,7 +40,9 @@ func GetFeeHandler(feeService fee.Service) http.HandlerFunc {
 		}
 		defer func() {
 			erri := r.Body.Close()
-			slog.ErrorContext(r.Context(), "failed to close request body", "error", erri)
+			if erri != nil {
+				slog.ErrorContext(r.Context(), "failed to close request body", "error", erri)
+			}
 		}()
 
 		// Validate
